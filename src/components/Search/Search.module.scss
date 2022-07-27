@@ -1,0 +1,39 @@
+.Search{
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    margin: auto;
+}
+
+.Bar {
+    padding: 15px 10px 10px 40px;
+    background-color: #ccf0e7;
+    border-radius: 60px;
+    border: none;
+    display: flex;
+    font-size: x-large;
+    width: 90%;
+}
+
+.Filter {
+    font-size: 3rem;
+    margin: auto;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+input {
+    margin: auto;
+    background-color: transparent;
+    border: none;
+    margin-left: 20px;
+    outline: none;
+    width: 100%;
+    height: 100%;
+}
+
+::placeholder{
+    color: grey;
+    font-size: large;
+}

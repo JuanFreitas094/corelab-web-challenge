@@ -22,9 +22,9 @@ const VehiclesPage = () => {
   return (
     <div className={styles.Vehicles}>
       <main className={styles.main}>
-        <Search placeholder="Search" value={search} onChange={() => {}} />
+        <Search placeholder="Buscar" value={search} onChange={() => {}} />
 
-        <Button text="Add new vehicle" onClick={() => {}} />
+        <Button text="ADICIONAR" onClick={() => {}} />
 
         <Card title="Sandero Stepway">
           <p>Price: 22000</p>
