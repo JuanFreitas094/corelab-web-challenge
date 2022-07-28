@@ -4,6 +4,7 @@ import { Button, Card, Search } from "../../components";
 import styles from "./Vehicles.module.scss";
 import { IVehicle } from "../../types/Vehicle";
 import AddPage from "../Add";
+import IFilter from "../../pages/Filter";
 
 const VehiclesPage = () => {
   const [vehicles, setVehicles] = useState<IVehicle[]>([]);
@@ -99,3 +100,19 @@ const VehiclesPage = () => {
 };
 
 export default VehiclesPage;
+
+const VehiclesPage = () => {
+  const [vehicles, setVehicles] = useState<IVehicle[]>([]);
+  const [search, setSearch] = useState<string>("");
+
+  const[isFilterOpened, setFilterOpened] = useState<boolean>(false);
+  const[isAddOpened, setAddOpened] = useState<boolean>(false);
+
+
+  const handleFilterClick = () => {
+    setFilterOpened(!isFilterOpened);
+  }
+
+  const handleAddClick = () => {
+    setAddOpened(!isAddOpened);
+  }

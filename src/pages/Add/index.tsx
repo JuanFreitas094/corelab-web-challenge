@@ -10,19 +10,21 @@ interface IAdd {
 const AddPage = (props: IAdd) => {
   return (
     <div className={styles.Add}>
-      <button className={styles.Back} onClick={props.onClick}><BiArrowBack /></button>
-      <div className={styles.Main}>
-        <main className={styles.main}>
-          <form>
-            <Input label="Nome"/>
-            <Input label="Marca"/>
-            <Input label="Cor"/>
-            <Input label="Ano"/>
-            <Input label="Placa"/>
-          </form>
-          <Button text="SALVAR" onClick={props.onClick}/>
-        </main>
-      </div>
+      <>
+        <button className={styles.Back} onClick={props.onClick}><BiArrowBack /></button>
+      </>  
+        <div className={styles.Main}>
+          <main className={styles.main}>
+            <form>
+              <Input label="Nome"/>
+              <Input label="Marca"/>
+              <Input label="Cor"/>
+              <Input label="Ano"/>
+              <Input label="Placa"/>
+            </form>
+            <Button text="SALVAR" onClick={props.onClick}/>
+          </main>
+        </div>  
     </div>
   );
 
