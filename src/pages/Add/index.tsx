@@ -16,11 +16,11 @@ const AddPage = (props: IAdd) => {
         <div className={styles.Main}>
           <main className={styles.main}>
             <form>
-              <Input label="Nome"/>
-              <Input label="Marca"/>
-              <Input label="Cor"/>
-              <Input label="Ano"/>
-              <Input label="Placa"/>
+              <Input label="Nome:"/>
+              <Input label="Marca:"/>
+              <Input label="Cor:"/>
+              <Input label="Ano:"/>
+              <Input label="Placa:"/>
             </form>
             <Button text="SALVAR" onClick={props.onClick}/>
           </main>

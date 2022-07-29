@@ -1,7 +1,7 @@
 import { Button } from "../../components";
 
 import styles from "./Filter.module.scss"
-import { TbAdjustmentsHorizontal } from "react-icons/tb"
+import { BiArrowBack } from "react-icons/bi"
 import Input from "../../components/Input";
 import Select from "../../components/Select";
 
@@ -9,24 +9,24 @@ interface IFilter {
     onClick: () => void;
 }
 
-const Filter = (props: IFilter) => {
+const FilterPage = (props: IFilter) => { 
     return (
-      <div className={styles.Add}>
+      <div className={styles.Filter}>
         <>
-          <button className={styles.Filter} onClick={props.onClick}>< TbAdjustmentsHorizontal /></button>
+        <button className={styles.Back} onClick={props.onClick}><BiArrowBack /></button>    
         </>  
           <div className={styles.Main}>
             <main className={styles.main}>
-              <select>
-                <Select label="Marca"/>
-                <Select label="Cor"/>
-                <Select label="Ano"/>
-              </select>
               <form>
-                <Input label="Preço mín"/>
-                <Input label="Preço máx"/>
+                <Select label="Marca:"/>
+                <Select label="Cor:"/>
+                <Select label="Ano:"/>
+                <div className={styles.Price}>
+                  <Input label="Preço mín:"/>
+                  <Input label="Preço máx:"/>
+                </div>  
               </form>
-              <Button text="SALVAR" onClick={props.onClick}/>
+              <Button text="SALVAR" onClick={props.onClick}  />
             </main>
           </div>  
       </div>
@@ -35,4 +35,4 @@ const Filter = (props: IFilter) => {
   }
   
   
-  export default Filter;
+  export default FilterPage;

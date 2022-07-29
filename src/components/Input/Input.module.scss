@@ -1,6 +1,5 @@
 .Label {
-    font-weight: bold;
-    font-size: 14px;
+    font-size: x-large;
     margin-bottom: 5px;
 }
 
@@ -12,8 +11,9 @@
 }
 
 .InputText {
-    width: 100%;
+    width: 95%;
     background-color: white;
     border-radius: 20px;
-    padding: 10px;    
+    padding: 10px; 
+    margin-left: 0px;   
 }

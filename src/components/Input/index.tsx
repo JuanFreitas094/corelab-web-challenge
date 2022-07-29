@@ -1,6 +1,5 @@
 import styles from './Input.module.scss';
 
-
 function Input ({ label, ...props }: { label: string }) {
     return (
         <div className={styles.Input}>
