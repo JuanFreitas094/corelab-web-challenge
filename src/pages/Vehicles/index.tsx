@@ -4,7 +4,7 @@ import { Button, Card, Search } from "../../components";
 import styles from "./Vehicles.module.scss";
 import { IVehicle } from "../../types/Vehicle";
 import AddPage from "../Add";
-import { TbAdjustmentsHorizontal } from  'react-icons/tb'
+import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 import FilterPage from "../../pages/Filter";
 
 const VehiclesPage = () => {
@@ -53,11 +53,11 @@ const VehiclesPage = () => {
           <>
             <div className={styles.SearchFilter}>
               <Search placeholder="Buscar" value={search} onChange={() => {}} />
-              <button className={styles.Filter} onClick={handleFilterClick}><TbAdjustmentsHorizontal/></button>  
+              <button className={styles.Filter} onClick={handleFilterClick}><TbAdjustmentsHorizontal/></button>
             </div>
-            <Button text="ADICIONAR" onClick={handleAddClick} />  
-            <h2>Meus Anúncios</h2>
-            <div className={styles.Cards}>
+              <Button text="ADICIONAR" onClick={handleAddClick} />   
+              <h2>Meus Anúncios</h2>
+              <div className={styles.Cards}>
             <Card
               title={teste.name}
               children={
@@ -97,14 +97,14 @@ const VehiclesPage = () => {
         
         <div>
           { isAddOpened ? <AddPage onClick={handleAddClick}/> : null }
-        </div>          
-
+        </div> 
         <div>
           { isFilterOpened ? <FilterPage onClick={handleFilterClick}/> : null }
-        </div>
+        </div>           
       </main>
     </div>
   );
 };
 
 export default VehiclesPage;
+
