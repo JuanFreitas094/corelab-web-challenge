@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getVehicles } from "../../lib/api";
+import { getVehicles, updateVehicle } from "../../lib/api";
 import { Button, Card, Search } from "../../components";
 import styles from "./Vehicles.module.scss";
 import { IVehicle } from "../../types/Vehicle";
@@ -7,36 +7,11 @@ import AddPage from "../Add";
 import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 import FilterPage from "../../pages/Filter";
 
-var vehicles1: IVehicle[] = new Array;
-var teste: IVehicle = {
-  id: 1,
-  plate: "GFM0495",
-  isFavorite: false,
-  createdAt: new Date(2022, 10, 2, 2, 20, 1, 10),
-  name: "TESTE1",
-  price: 100,
-  description: "OLA",
-  year: 2300,
-  color: "VERDÃO" 
-}
-vehicles1.push(teste);
-
-var teste: IVehicle = {
-  id: 2,
-  plate: "GFM0495",
-  isFavorite: true,
-  createdAt: new Date(2022, 10, 2, 2, 20, 1, 10),
-  name: "TESTE2",
-  price: 100,
-  description: "OLA",
-  year: 2300,
-  color: "VERDÃO" 
-}
-vehicles1.push(teste);
-
 const VehiclesPage = () => {
-  const [vehicles, setVehicles] = useState<IVehicle[]>(vehicles1);
+  const [vehicles, setVehicles] = useState<IVehicle[]>([]);
   const [search, setSearch] = useState<string>("");
+
+  const[vehicle1, setVehicleToEdit] = useState<IVehicle>();
 
   const[isFilterOpened, setFilterOpened] = useState<boolean>(false);
   const[isAddOpened, setAddOpened] = useState<boolean>(false);
@@ -47,25 +22,32 @@ const VehiclesPage = () => {
 
   const handleAddClick = () => {
     setAddOpened(!isAddOpened);
+    fetchVehicles();
+  }
+
+  const handleCardEditClick = (vehicle: IVehicle) => {
+    setVehicleToEdit(vehicle);
+    handleAddClick();
   }
   
   const handleFavoriteClick = (vehicle: IVehicle)  => {
     let vehicleAux = [...vehicles];
     for (let i = 0; i<= vehicleAux.length; i++) {
       if (vehicleAux[i].id === vehicle.id) {
-        vehicleAux[i].isFavorite = !vehicle.isFavorite;
+        vehicleAux[i].is_favorite = !vehicle.is_favorite;
+        updateVehicle(vehicleAux[i]);
         break;
       }
     }
     setVehicles(vehicleAux);
   }
 
-  useEffect(() => {
-    const fetchVehicles = async () => {
-      const payload = await getVehicles();
-      setVehicles(payload);
-    };
+  const fetchVehicles = async () => {
+    const payload = await getVehicles();
+    setVehicles(payload);
+  };
 
+  useEffect(() => {    
     fetchVehicles();
   }, []);
 
@@ -86,7 +68,7 @@ const VehiclesPage = () => {
               <div className={styles.Cards}>
                 {
                   vehicles.filter(function(obj) {
-                    if (obj.isFavorite) {
+                    if (obj.is_favorite) {
                       return obj;
                     } 
                   }).map((value, pos) =>
@@ -94,14 +76,15 @@ const VehiclesPage = () => {
                       title={value.name}
                       children={
                         <>
-                          <p>{teste.price}</p>
-                          <p>{teste.description}</p>
-                          <p>{teste.year}</p>
-                          <p>{teste.color}</p>
+                          <p>{value.price}</p>
+                          <p>{value.description}</p>
+                          <p>{value.year}</p>
+                          <p>{value.color}</p>
                         </>    
                       }
                       vehicle={value}
                       onClick={handleFavoriteClick}
+                      onClickEdit={handleCardEditClick}
                     />
                   )
                 }
@@ -111,7 +94,7 @@ const VehiclesPage = () => {
               <div className={styles.Cards}>           
                 {
                   vehicles.filter(function(obj) {
-                    if (!obj.isFavorite) {
+                    if (!obj.is_favorite) {
                       return obj;
                     }
                   }).map((value, pos) =>
@@ -119,14 +102,15 @@ const VehiclesPage = () => {
                       title={value.name}
                       children={
                         <>
-                          <p>{teste.price}</p>
-                          <p>{teste.description}</p>
-                          <p>{teste.year}</p>
-                          <p>{teste.color}</p>
+                          <p>{value.price}</p>
+                          <p>{value.description}</p>
+                          <p>{value.year}</p>
+                          <p>{value.color}</p>
                         </>    
                       }
                       vehicle={value}
                       onClick={handleFavoriteClick}
+                      onClickEdit={handleCardEditClick}
                     />
                   )
               }
@@ -136,7 +120,7 @@ const VehiclesPage = () => {
         }
         
         <div>
-          { isAddOpened ? <AddPage onClick={handleAddClick}/> : null }
+          { isAddOpened ? <AddPage onClick={handleAddClick} vehicle={vehicle1} /> : null }
         </div> 
         <div>
           { isFilterOpened ? <FilterPage onClick={handleFilterClick}/> : null }

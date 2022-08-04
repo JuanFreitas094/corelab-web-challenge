@@ -5,19 +5,30 @@ import { VscChromeClose } from 'react-icons/vsc'
 import { FiEdit } from 'react-icons/fi'
 import { IVehicle } from "../../types/Vehicle";
 import { AiFillHeart } from 'react-icons/ai'
+import { updateVehicle, deleteVehicle } from "../../lib/api";
+import AddPage from "../../pages/Add";
 
 interface ICard {
   title: string;
   children: ReactNode;
   vehicle: IVehicle;
   onClick: (vehicle: IVehicle) => void;
+  onClickEdit: (vehicle: IVehicle) => void;
 }
 
 const Card = (props: ICard) => {  
-  const[isFavorited, setFavorite] = useState<boolean>(props.vehicle.isFavorite);
+  const[isFavorited, setFavorite] = useState<boolean>(props.vehicle.is_favorite);
 
   const handleClick = () => {
     props.onClick(props.vehicle);
+  }
+
+  const handleEditClick =() => {
+    props.onClickEdit(props.vehicle)
+  }
+
+  const handleDeleteButtonClick = () => {
+    deleteVehicle(props.vehicle.id);
   }
 
   return (
@@ -26,8 +37,8 @@ const Card = (props: ICard) => {
         <button onClick={handleClick}>
           { isFavorited ? <AiFillHeart/> : <AiOutlineHeart/> }
         </button>
-        <button><VscChromeClose /></button>
-        <button><FiEdit /></button>
+        <button onClick={handleDeleteButtonClick}><VscChromeClose /></button>
+        <button onClick={handleEditClick}><FiEdit /></button>
       </div>
       <h2>{props.title}</h2>
       <div className={styles.content}>{props.children}</div>
