@@ -5,8 +5,7 @@ import { VscChromeClose } from 'react-icons/vsc'
 import { FiEdit } from 'react-icons/fi'
 import { IVehicle } from "../../types/Vehicle";
 import { AiFillHeart } from 'react-icons/ai'
-import { updateVehicle, deleteVehicle } from "../../lib/api";
-import AddPage from "../../pages/Add";
+import { deleteVehicle } from "../../lib/api";
 
 interface ICard {
   title: string;
@@ -14,6 +13,7 @@ interface ICard {
   vehicle: IVehicle;
   onClick: (vehicle: IVehicle) => void;
   onClickEdit: (vehicle: IVehicle) => void;
+  onClickDelete: () => void;
 }
 
 const Card = (props: ICard) => {  
@@ -29,6 +29,7 @@ const Card = (props: ICard) => {
 
   const handleDeleteButtonClick = () => {
     deleteVehicle(props.vehicle.id);
+    props.onClickDelete();
   }
 
   return (

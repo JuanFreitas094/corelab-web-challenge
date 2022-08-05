@@ -3,15 +3,17 @@ import { getVehicles, updateVehicle } from "../../lib/api";
 import { Button, Card, Search } from "../../components";
 import styles from "./Vehicles.module.scss";
 import { IVehicle } from "../../types/Vehicle";
+import { Vehicle } from "../../types/Vehicle";
 import AddPage from "../Add";
 import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 import FilterPage from "../../pages/Filter";
+import { Console } from "console";
 
 const VehiclesPage = () => {
   const [vehicles, setVehicles] = useState<IVehicle[]>([]);
   const [search, setSearch] = useState<string>("");
 
-  const[vehicle1, setVehicleToEdit] = useState<IVehicle>();
+  const[vehicleToEdit, setVehicleToEdit] = useState<Vehicle>(new Vehicle);
 
   const[isFilterOpened, setFilterOpened] = useState<boolean>(false);
   const[isAddOpened, setAddOpened] = useState<boolean>(false);
@@ -21,15 +23,17 @@ const VehiclesPage = () => {
   }
 
   const handleAddClick = () => {
+    setVehicleToEdit(new Vehicle);
     setAddOpened(!isAddOpened);
     fetchVehicles();
   }
 
   const handleCardEditClick = (vehicle: IVehicle) => {
     setVehicleToEdit(vehicle);
-    handleAddClick();
+    setAddOpened(!isAddOpened);
+    fetchVehicles();
   }
-  
+
   const handleFavoriteClick = (vehicle: IVehicle)  => {
     let vehicleAux = [...vehicles];
     for (let i = 0; i<= vehicleAux.length; i++) {
@@ -85,6 +89,7 @@ const VehiclesPage = () => {
                       vehicle={value}
                       onClick={handleFavoriteClick}
                       onClickEdit={handleCardEditClick}
+                      onClickDelete={fetchVehicles}
                     />
                   )
                 }
@@ -111,6 +116,7 @@ const VehiclesPage = () => {
                       vehicle={value}
                       onClick={handleFavoriteClick}
                       onClickEdit={handleCardEditClick}
+                      onClickDelete={fetchVehicles}
                     />
                   )
               }
@@ -120,7 +126,7 @@ const VehiclesPage = () => {
         }
         
         <div>
-          { isAddOpened ? <AddPage onClick={handleAddClick} vehicle={vehicle1} /> : null }
+          { isAddOpened ? <AddPage onClick={handleAddClick} vehicle={vehicleToEdit} /> : null }
         </div> 
         <div>
           { isFilterOpened ? <FilterPage onClick={handleFilterClick}/> : null }

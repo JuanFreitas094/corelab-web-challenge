@@ -26,8 +26,8 @@ const FilterPage = (props: IFilter) => {
                 <Select label="Cor:"/>
                 <Select label="Ano:"/>
                 <div className={styles.Price}>
-                  <Input label="Preço mín:" onChange={(event: React.FormEvent<HTMLInputElement>) => setPriceMin(event.currentTarget.value)}/>
-                  <Input label="Preço máx:" onChange={(event: React.FormEvent<HTMLInputElement>) => setPriceMax(event.currentTarget.value)}/>
+                  <Input label="Preço mín:" onChange={(event: React.FormEvent<HTMLInputElement>) => setPriceMin(event.currentTarget.value)} inputText=''/>
+                  <Input label="Preço máx:" onChange={(event: React.FormEvent<HTMLInputElement>) => setPriceMax(event.currentTarget.value)} inputText=''/>
                 </div>
               </form>
               <Button text="SALVAR" onClick={props.onClick}  />
