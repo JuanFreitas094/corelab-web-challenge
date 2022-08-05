@@ -11,7 +11,7 @@
   }
 
   @include tablet {
-
+    
   }
 
   @include laptop {
@@ -29,9 +29,10 @@
 
 .Cards {
   display: flex;
+  flex-wrap: wrap;  
   padding: 15px;
+  gap: 1rem;
 }
-
 
 .Filter {
   font-size: 3rem;
