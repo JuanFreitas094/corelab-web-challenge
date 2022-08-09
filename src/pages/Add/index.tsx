@@ -3,7 +3,7 @@ import Input from "../../components/Input"
 import styles from "./Add.module.scss"
 import { BiArrowBack } from "react-icons/bi"
 import { useState } from "react";
-import { Vehicle } from "../../types/Vehicle";
+import Vehicle from "../../types/Vehicle";
 import { addVehicle, updateVehicle } from "../../lib/api";
 
 interface IAdd {
@@ -22,6 +22,7 @@ const AddPage = (props: IAdd) => {
     const vehicle: Vehicle = {
       name: name,
       plate: plate,
+      brand: brand,
       year: parseInt(year, 10),
       color: color,
       is_favorite: false,

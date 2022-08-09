@@ -14,7 +14,7 @@ function Input ({ label, onChange, inputText, ...props }: { label: string, onCha
     return (
         <div className={styles.Input}>
             <p className={styles.Label}>{label}</p>
-            <input className={styles.InputText} placeholder={label} onChange={handleOnChange} value={inputTextState} {...props}/>
+            <input className={styles.InputText} placeholder="" onChange={handleOnChange} value={inputTextState} {...props}/>
         </div>
     );
 };

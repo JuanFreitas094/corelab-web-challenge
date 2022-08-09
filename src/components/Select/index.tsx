@@ -1,12 +1,17 @@
 import styles from "./Select.module.scss";
+import Select from 'react-select'
 
-function Select ({ label, ...props }: { label: string }) {
+function Dropdown ({ label, options, onChange, ...props }: { label: string, options: string[], onChange: (value: string) => void }) {
+    const handleOnChange = (value: any) => {
+        onChange(value.label);
+    }
+    
     return (
         <div className={styles.Select}>
             <p className={styles.Label}>{label}</p>
-            <select className={styles.SelectText} placeholder={label} {...props}/>
+            <Select className={styles.SelectText} placeholder="" options={options} onChange={handleOnChange} {...props}/>
         </div>
     );
 };
 
-export default Select;
+export default Dropdown;

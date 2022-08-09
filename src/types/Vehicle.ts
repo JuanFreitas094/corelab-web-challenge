@@ -1,6 +1,7 @@
 export interface IVehicle {
   id?: number;
   name: string;
+  brand: string;
   description?: string;
   plate: string;
   is_favorite: boolean;
@@ -10,9 +11,10 @@ export interface IVehicle {
   created_at?: Date;
 }
 
-export class Vehicle implements IVehicle {
+export default class Vehicle implements IVehicle {
   id?: number | undefined;
   name: string = '';
+  brand: string = '';
   description?: string | undefined;
   plate: string = '';
   is_favorite: boolean = false;

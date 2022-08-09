@@ -3,14 +3,16 @@ import { getVehicles, updateVehicle } from "../../lib/api";
 import { Button, Card, Search } from "../../components";
 import styles from "./Vehicles.module.scss";
 import { IVehicle } from "../../types/Vehicle";
-import { Vehicle } from "../../types/Vehicle";
+import Vehicle from "../../types/Vehicle";
 import AddPage from "../Add";
 import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 import FilterPage from "../../pages/Filter";
 import { Console } from "console";
 
+
 const VehiclesPage = () => {
-  const [vehicles, setVehicles] = useState<IVehicle[]>([]);
+  const [vehicles, setVehicles] = useState<IVehicle[]>([]);  
+  const [allVehicles, setAllVehicles] = useState<IVehicle[]>([]);
   const [search, setSearch] = useState<string>("");
 
   const[vehicleToEdit, setVehicleToEdit] = useState<Vehicle>(new Vehicle);
@@ -46,9 +48,15 @@ const VehiclesPage = () => {
     setVehicles(vehicleAux);
   }
 
+  const handleFiltering = (vehicles: Vehicle[]) => {
+    setVehicles(vehicles);
+    handleFilterClick();
+  }
+
   const fetchVehicles = async () => {
     const payload = await getVehicles();
     setVehicles(payload);
+    setAllVehicles(payload);
   };
 
   useEffect(() => {    
@@ -129,7 +137,7 @@ const VehiclesPage = () => {
           { isAddOpened ? <AddPage onClick={handleAddClick} vehicle={vehicleToEdit} /> : null }
         </div> 
         <div>
-          { isFilterOpened ? <FilterPage onClick={handleFilterClick}/> : null }
+          { isFilterOpened ? <FilterPage vehicles={allVehicles} onClickBack={handleFilterClick} onClickSave={handleFiltering}/> : null }
         </div>           
       </main>
     </div>
