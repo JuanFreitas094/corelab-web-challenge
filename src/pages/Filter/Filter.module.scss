@@ -5,7 +5,6 @@
     display: grid;
     padding: 1rem 2rem;
     width: 60%;
-    margin: auto;
 
  .main {
     display: grid;
@@ -32,12 +31,16 @@
 
 .Filter {
     display: flex;
+    align-items: start;
     margin-top: 2rem;
+
+    @media (max-width: 500px) {
+        display: block;
+    }
 }
 
 .Back {
     font-size: xx-large;
-    margin-left: 4rem;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -46,6 +49,5 @@
 
 .Price {
     display: flex;
-    margin: auto;
     width: 90%;
 }

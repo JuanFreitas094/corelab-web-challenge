@@ -74,60 +74,60 @@ const VehiclesPage = () => {
               <Search placeholder="Buscar" value={search} onChange={() => {}} />
               <button className={styles.Filter} onClick={handleFilterClick}><TbAdjustmentsHorizontal/></button>
             </div>
-              <Button text="ADICIONAR" onClick={handleAddClick} /> 
+            <Button text="ADICIONAR" onClick={handleAddClick} /> 
 
-              <h2>Favoritos</h2>
-              <div className={styles.Cards}>
-                {
-                  vehicles.filter(function(obj) {
-                    if (obj.is_favorite) {
-                      return obj;
-                    } 
-                  }).map((value, pos) =>
-                  <Card
-                      title={value.name}
-                      children={
-                        <>
-                          <p>{value.price}</p>
-                          <p>{value.description}</p>
-                          <p>{value.year}</p>
-                          <p>{value.color}</p>
-                        </>    
-                      }
-                      vehicle={value}
-                      onClick={handleFavoriteClick}
-                      onClickEdit={handleCardEditClick}
-                      onClickDelete={fetchVehicles}
-                    />
-                  )
-                }
-              </div>
-              
-              <h2>Meus Anúncios</h2>
-              <div className={styles.Cards}>           
-                {
-                  vehicles.filter(function(obj) {
-                    if (!obj.is_favorite) {
-                      return obj;
+            <h2>Favoritos</h2>
+            <div className={styles.Cards}>
+              {
+                vehicles.filter(function(obj) {
+                  if (obj.is_favorite) {
+                    return obj;
+                  } 
+                }).map((value, pos) =>
+                <Card
+                    title={value.name}
+                    children={
+                      <>
+                        <p>{value.price}</p>
+                        <p>{value.description}</p>
+                        <p>{value.year}</p>
+                        <p>{value.color}</p>
+                      </>    
                     }
-                  }).map((value, pos) =>
-                  <Card
-                      title={value.name}
-                      children={
-                        <>
-                          <p>{value.price}</p>
-                          <p>{value.description}</p>
-                          <p>{value.year}</p>
-                          <p>{value.color}</p>
-                        </>    
-                      }
-                      vehicle={value}
-                      onClick={handleFavoriteClick}
-                      onClickEdit={handleCardEditClick}
-                      onClickDelete={fetchVehicles}
-                    />
-                  )
+                    vehicle={value}
+                    onClick={handleFavoriteClick}
+                    onClickEdit={handleCardEditClick}
+                    onClickDelete={fetchVehicles}
+                  />
+                )
               }
+            </div>
+              
+            <h2>Meus Anúncios</h2>
+            <div className={styles.Cards}>           
+              {
+                vehicles.filter(function(obj) {
+                  if (!obj.is_favorite) {
+                    return obj;
+                  }
+                }).map((value, pos) =>
+                <Card
+                    title={value.name}
+                    children={
+                      <>
+                        <p>{value.price}</p>
+                        <p>{value.description}</p>
+                        <p>{value.year}</p>
+                        <p>{value.color}</p>
+                      </>    
+                    }
+                    vehicle={value}
+                    onClick={handleFavoriteClick}
+                    onClickEdit={handleCardEditClick}
+                    onClickDelete={fetchVehicles}
+                  />
+                )
+            }
             </div>          
           </>
           : null          
