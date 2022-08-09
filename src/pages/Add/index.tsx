@@ -12,18 +12,18 @@ interface IAdd {
 }
 
 const AddPage = (props: IAdd) => {
-  const [name, setName] = useState('')
-  const [brand, setBrand] = useState('')
-  const [color, setColor] = useState('')
-  const [year, setYear] = useState('')
-  const [plate, setPlate] = useState('')
+  const [name, setName] = useState(props.vehicle.name)
+  const [brand, setBrand] = useState(props.vehicle.brand)
+  const [color, setColor] = useState(props.vehicle.color)
+  const [year, setYear] = useState(props.vehicle.year)
+  const [plate, setPlate] = useState(props.vehicle.name)
   
   const handleAddButtonClick = () => {
     const vehicle: Vehicle = {
       name: name,
-      plate: plate,
+      plate: plate, 
       brand: brand,
-      year: parseInt(year, 10),
+      year: year,
       color: color,
       is_favorite: false,
       description: props.vehicle.description,
@@ -62,7 +62,7 @@ const AddPage = (props: IAdd) => {
                 inputText = {props.vehicle.color}/>
               <Input 
                 label="Ano:" 
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setYear(event.currentTarget.value)}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setYear(parseInt(event.currentTarget.value))}
                 inputText = {props.vehicle.year.toString()}/>
               <Input 
                 label="Placa:" 

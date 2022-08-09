@@ -25,12 +25,12 @@ const put = (path: string, vehicle: IVehicle): Promise<any> => {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: json
-  }).then((res) => console.log(res.json()));
+  }).then((res) => res.json());
 }
 
 const destroy = (path: string): Promise<any> => {
   return fetch(endpoint(path), { method: 'DELETE' })
-  .then((res) => res.json());
+  .then((res) => res.text());
 }
 
 //API access
